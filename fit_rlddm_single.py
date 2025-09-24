@@ -164,7 +164,7 @@ def make_inits(stan_data: dict, chains: int) -> list[dict]:
     inits = []
     upper = float(stan_data["rt_upper_t0"])
     # choose a conservative t0 far from min(rt)
-    lo = 0.03
+    lo = 0.06
     hi = max(0.0305, upper - 0.002)
     if hi <= lo:
         hi = lo + 0.001  # tiny range, still valid
