@@ -271,7 +271,9 @@ def main():
 
     try:
         idata = az.from_cmdstanpy(posterior=fit)
-        summ = az.summary(idata, var_names=["alpha", "a", "t0", "scaler"], hdi_prob=0.95)
+        # summ = az.summary(idata, var_names=["alpha", "a", "t0", "scaler"], hdi_prob=0.95)
+        summ = az.summary(idata, var_names=["alpha","a","t0","scaler","log_scaler"], hdi_prob=0.95)
+
         print("\n", summ.to_string())
         az.to_netcdf(idata, outdir / f"{Path(args.stan).stem}-{timestamp}.nc")
         summ.to_csv(outdir / f"{Path(args.stan).stem}-{timestamp}-summary.csv")

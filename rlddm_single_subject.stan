@@ -71,12 +71,17 @@ data {
 //   real<lower=0.03, upper=rt_upper_t0> t0;  // non-decision time
 //   real<lower=0> scaler;                    // drift scale
 // }
+
 parameters {
   real<lower=0,upper=1> alpha;             // learning rate
   real<lower=0.5, upper=2.2> a;           // boundary separation
 //   real<lower=0.6, upper=1.5> a;           // boundary separation
   real<lower=0.06, upper=rt_upper_t0> t0;  // non-decision time
-  real<lower=0> scaler;                    // drift scale
+//   real<lower=0> scaler;                    // drift scale
+  real log_scaler; // unconstrained
+}
+transformed parameters {
+  real<lower=0> scaler = exp(log_scaler);   // <-- move it here (not transformed data)
 }
 
 model {
@@ -86,9 +91,11 @@ model {
 //   t0     ~ normal(0.20, 0.06);
 //   scaler ~ normal(1.0, 0.5);
   alpha  ~ beta(5, 5);
-  a      ~ normal(1.2, 0.01);
+  a      ~ normal(1.2, 0.1);
   t0     ~ normal(0.25, 0.05);
-  scaler ~ lognormal(log(0.30), 0.40);
+//   scaler ~ lognormal(log(0.30), 0.40);
+  log_scaler ~ normal(log(0.12), 0.35);  // ≈ lognormal(mean ~0.12)
+
 
   // Q(s,a): second-stage action-values
   array[S] vector[2] Q;
