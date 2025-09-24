@@ -2,17 +2,17 @@
 // Stage 1 likelihood only; Stage 2 choices update Q(s,a)
 // choice coding: 0 = upper/left (mb1), 1 = lower/right (mb2)
 
+
+
+
 functions {
+
   real softmax_max2(real q1, real q2, real tau) {
     // numerically stable: returns approx max(q1,q2)
     real m = fmax(q1, q2);
     return m + tau * log(exp((q1 - m)/tau) + exp((q2 - m)/tau));
   }
-  // ... (keep your wiener_* functions as-is)
-}
-
-
-functions {
+  
   // Small-time series (Navarro-Fuss style), simple and fast
   real wiener_pdf_small(real t, real a, real v, real w, int K) {
     real sum = 0;
@@ -122,7 +122,7 @@ generated quantities {
   vector[N] log_lik;
   {
     array[S] vector[2] Qg;
-    for (s in 1:S) Qg[s] = rep_vector(0.0, 2);
+    for (s in 1:S) Qg[s] = rep_vector(0.5, 2);
 
     for (n in 1:N) {
       int sL = mb1[n];
