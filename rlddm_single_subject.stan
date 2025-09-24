@@ -3,6 +3,16 @@
 // choice coding: 0 = upper/left (mb1), 1 = lower/right (mb2)
 
 functions {
+  real softmax_max2(real q1, real q2, real tau) {
+    // numerically stable: returns approx max(q1,q2)
+    real m = fmax(q1, q2);
+    return m + tau * log(exp((q1 - m)/tau) + exp((q2 - m)/tau));
+  }
+  // ... (keep your wiener_* functions as-is)
+}
+
+
+functions {
   // Small-time series (Navarro-Fuss style), simple and fast
   real wiener_pdf_small(real t, real a, real v, real w, int K) {
     real sum = 0;
@@ -64,6 +74,7 @@ data {
 parameters {
   real<lower=0,upper=1> alpha;             // learning rate
   real<lower=0.5, upper=2.2> a;           // boundary separation
+//   real<lower=0.6, upper=1.5> a;           // boundary separation
   real<lower=0.06, upper=rt_upper_t0> t0;  // non-decision time
   real<lower=0> scaler;                    // drift scale
 }
@@ -75,7 +86,7 @@ model {
 //   t0     ~ normal(0.20, 0.06);
 //   scaler ~ normal(1.0, 0.5);
   alpha  ~ beta(5, 5);
-  a      ~ normal(1.2, 0.25);
+  a      ~ normal(1.2, 0.01);
   t0     ~ normal(0.25, 0.05);
   scaler ~ lognormal(log(0.30), 0.40);
 
@@ -89,8 +100,11 @@ model {
     int sR = mb2[n];
 
     // model-based first-stage value difference: max_a Q[sL,a] - max_a Q[sR,a]
-    real qL = (Q[sL][1] > Q[sL][2]) ? Q[sL][1] : Q[sL][2];
-    real qR = (Q[sR][1] > Q[sR][2]) ? Q[sR][1] : Q[sR][2];
+    // real qL = (Q[sL][1] > Q[sL][2]) ? Q[sL][1] : Q[sL][2];
+    // real qR = (Q[sR][1] > Q[sR][2]) ? Q[sR][1] : Q[sR][2];
+    real qL = softmax_max2(Q[sL][1], Q[sL][2], 0.03); // tau=0.03 works well
+    real qR = softmax_max2(Q[sR][1], Q[sR][2], 0.03);
+
     real dv = qL - qR;
     real v  = scaler * dv;
 
