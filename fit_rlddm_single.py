@@ -246,6 +246,7 @@ def main():
             # inits=init_list,
             output_dir="cmdstan_tmp",
             show_console=args.show_console,
+            step_size_jitter=0.1,
         )
     except Exception:
         print("\nSampling failed — showing latest Stan console log:\n", file=sys.stderr)

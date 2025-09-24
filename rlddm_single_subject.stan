@@ -94,12 +94,12 @@ model {
   a      ~ normal(1.2, 0.1);
   t0     ~ normal(0.25, 0.05);
 //   scaler ~ lognormal(log(0.30), 0.40);
-  log_scaler ~ normal(log(0.12), 0.35);  // ≈ lognormal(mean ~0.12)
+  log_scaler ~ normal(log(0.06), 0.25);  // ≈ lognormal(mean ~0.12)
 
 
   // Q(s,a): second-stage action-values
   array[S] vector[2] Q;
-  for (s in 1:S) Q[s] = rep_vector(0.0, 2);
+  for (s in 1:S) Q[s] = rep_vector(0.5, 2);
 
   // Likelihood + RL updates
   for (n in 1:N) {
