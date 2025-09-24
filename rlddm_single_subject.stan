@@ -55,19 +55,29 @@ data {
   real<lower=0.03> rt_upper_t0;            // strict upper bound for t0 (< min(rt))
 }
 
+// parameters {
+//   real<lower=0,upper=1> alpha;             // learning rate
+//   real<lower=0.35, upper=2.5> a;           // boundary separation
+//   real<lower=0.03, upper=rt_upper_t0> t0;  // non-decision time
+//   real<lower=0> scaler;                    // drift scale
+// }
 parameters {
   real<lower=0,upper=1> alpha;             // learning rate
-  real<lower=0.35, upper=2.5> a;           // boundary separation
-  real<lower=0.03, upper=rt_upper_t0> t0;  // non-decision time
+  real<lower=0.5, upper=2.2> a;           // boundary separation
+  real<lower=0.06, upper=rt_upper_t0> t0;  // non-decision time
   real<lower=0> scaler;                    // drift scale
 }
 
 model {
   // Priors
-  alpha  ~ beta(2, 2);
-  a      ~ normal(1.2, 0.35);
-  t0     ~ normal(0.20, 0.06);
-  scaler ~ normal(1.0, 0.5);
+//   alpha  ~ beta(2, 2);
+//   a      ~ normal(1.2, 0.35);
+//   t0     ~ normal(0.20, 0.06);
+//   scaler ~ normal(1.0, 0.5);
+  alpha  ~ beta(5, 5);
+  a      ~ normal(1.2, 0.25);
+  t0     ~ normal(0.25, 0.05);
+  scaler ~ lognormal(log(0.30), 0.40);
 
   // Q(s,a): second-stage action-values
   array[S] vector[2] Q;
