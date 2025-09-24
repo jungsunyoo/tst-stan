@@ -1,143 +1,119 @@
-// file: rlddm_single_subject.stan
-functions {
-  real PI() { return 3.1415926535897932384626433832795; }
+// Two-stage RL + DDM (single subject), model-based only on stage 1
+// Stage 1 likelihood only; Stage 2 choices update Q(s,a)
+// choice coding: 0 = upper/left (mb1), 1 = lower/right (mb2)
 
-  // Small-time expansion (Navarro–Fuss style). Sum k = -K..K without negative ranges.
+functions {
+  // Small-time series (Navarro-Fuss style), simple and fast
   real wiener_pdf_small(real t, real a, real v, real w, int K) {
     real sum = 0;
-    // k = 0..K (positive & zero terms)
     for (k in 0:K) {
-      real m_pos  = 2.0 * k + w;
-      real num_pos = a * m_pos - v * t;
-      sum += m_pos * exp( - square(num_pos) / (2.0 * t) );
+      real mpos = 2.0 * k + w;
+      real npos = a * mpos - v * t;
+      sum += mpos * exp(- square(npos) / (2.0 * t));
 
-      // k = -1..-K (mirror), avoid double-counting k=0
       if (k > 0) {
-        real m_neg  = 2.0 * (-k) + w;
-        real num_neg = a * m_neg - v * t;
-        sum += m_neg * exp( - square(num_neg) / (2.0 * t) );
+        real mneg = -2.0 * k + w;
+        real nneg = a * mneg - v * t;
+        sum += mneg * exp(- square(nneg) / (2.0 * t));
       }
     }
-    return (a / sqrt(2.0 * PI() * pow(t, 3))) * exp( -0.5 * square(v) * t ) * sum;
+    return (a / sqrt(2.0 * pi() * pow(t, 3))) * exp(-0.5 * square(v) * t) * sum;
   }
 
-  // Large-time expansion (Navarro–Fuss style).
-  real wiener_pdf_large(real t, real a, real v, real w, int K) {
-    real sum = 0;
-    for (k in 1:K) {
-      real lam = k * PI();
-      sum += lam * sin(lam * w) * exp( -0.5 * (square(lam) * t) / square(a) );
-    }
-    return (2.0 / square(a)) * exp( v * a * w - 0.5 * square(v) * t ) * sum;
-  }
-
-  // Wiener log-PDF wrapper (reflect to upper boundary when choice==0)
-  real wiener_lpdf(real rt, int choice, real a, real v, real w, real t0) {
+  // User-defined _lpdf supports conditional notation
+  real wiener_lpdf(real rt, int choice, real a, real v, real t0) {
     if (rt <= t0) return negative_infinity();
     real t = rt - t0;
-    real w_eff = choice == 0 ? w : 1.0 - w;
-    real v_eff = choice == 0 ? v : -v;
-    real thresh = 0.1 * square(a);
-    int  K      = 10;  // your speed tweak
-    real dens = (t < thresh)
-                ? wiener_pdf_small(t, a, v_eff, w_eff, K)
-                : wiener_pdf_large(t, a, v_eff, w_eff, K);
+    real w = 0.5;  // fixed start bias
+
+    // reflect for upper boundary (choice==0)
+    real w_eff = (choice == 1) ? w : (1.0 - w);
+    real v_eff = (choice == 1) ? v : -v;
+
+    int K = 20;
+    real dens = wiener_pdf_small(t, a, v_eff, w_eff, K);
     if (!(dens > 0)) return negative_infinity();
     return log(dens);
   }
 }
 
 data {
-  int<lower=1> N;                             // trials
-  vector<lower=1e-6>[N] rt;                   // RT (s)
-  array[N] int<lower=0,upper=1> choice;       // 0/1 (lower/upper)
-  array[N] int<lower=0,upper=1> choice2;      // 0/1 (lower/upper action)
-  array[N] int<lower=1> state1;               // 1..S
-  array[N] int<lower=1> state2;               // 1..S
-  int<lower=2> S;                             // # states
-  vector<lower=0,upper=1>[N] reward;          // reward in [0,1]
-}
+  int<lower=1> N;                          // trials
+  vector<lower=1e-6>[N] rt;                // stage-1 RT (seconds)
+  array[N] int<lower=0,upper=1> choice;    // stage-1 choice: 0=left(mb1), 1=right(mb2)
 
-transformed data {
-  // Make constants visible to all blocks (model + generated quantities)
-  real z = 0.5;
-  real theta = 1.0;
+  // First-stage options mapped to second-stage states
+  array[N] int<lower=1> mb1;               // left option (1..S)
+  array[N] int<lower=1> mb2;               // right option (1..S)
+  int<lower=2> S;                          // number of second-stage states (often 2)
+
+  // Observed second-stage visit & action (for updates only)
+  array[N] int<lower=1,upper=S> s2;        // visited second-stage state (1..S)
+  array[N] int<lower=0,upper=1> choice2;   // chosen action at s2: 0=action1, 1=action2
+
+  vector<lower=0,upper=1>[N] reward;       // reward in [0,1]
+  real<lower=0.03> rt_upper_t0;            // strict upper bound for t0 (< min(rt))
 }
 
 parameters {
-  real<lower=0,upper=1> alpha;                // learning rate
-  real<lower=0,upper=4>         scaler;               // drift scale
-  real<lower=0.3>       a;                    // boundary separation
-  real<lower=0.05>      t0;                   // non-decision time
+  real<lower=0,upper=1> alpha;             // learning rate
+  real<lower=0.35, upper=2.5> a;           // boundary separation
+  real<lower=0.03, upper=rt_upper_t0> t0;  // non-decision time
+  real<lower=0> scaler;                    // drift scale
 }
 
 model {
-  // Priors (adjust as needed)
-//   alpha  ~ beta(2, 2);
-//   scaler ~ normal(1.5, 0.5);
-//   a      ~ normal(1.2, 0.4);
-//   t0     ~ normal(0.30, 0.12);
+  // Priors
+  alpha  ~ beta(2, 2);
+  a      ~ normal(1.2, 0.35);
+  t0     ~ normal(0.20, 0.06);
+  scaler ~ normal(1.0, 0.5);
 
+  // Q(s,a): second-stage action-values
+  array[S] vector[2] Q;
+  for (s in 1:S) Q[s] = rep_vector(0.0, 2);
 
-
-  // tighter priors to improve sampling
-  alpha  ~ beta(5,5);
-  scaler ~ normal(1.0, 0.3);  // and keep parameter <upper=4>
-  a      ~ normal(1.0, 0.25);
-  t0     ~ normal(0.30, 0.08);
-
-
-  // RL values (per-state-action)
-  matrix[S, 2] Q = rep_matrix(0.5, S, 2);
-
-  // Likelihood with sequential RL updates
+  // Likelihood + RL updates
   for (n in 1:N) {
-    int sL = state1[n];
-    int sR = state2[n];
-    
-    // Model-based Q-values with transition probabilities (70% common, 30% rare)
-    real prob_common = 0.7;
-    real prob_rare = 1.0 - prob_common;
-    
-    // For each first-stage state, compute expected value considering transition probabilities
-    real mb_q_sL = prob_common * max(Q[sL, :]) + prob_rare * max(Q[sR, :]);
-    real mb_q_sR = prob_common * max(Q[sR, :]) + prob_rare * max(Q[sL, :]);
+    int sL = mb1[n];
+    int sR = mb2[n];
 
-    real dv = mb_q_sL - mb_q_sR;  // Compare model-based Q-values
+    // model-based first-stage value difference: max_a Q[sL,a] - max_a Q[sR,a]
+    real qL = (Q[sL][1] > Q[sL][2]) ? Q[sL][1] : Q[sL][2];
+    real qR = (Q[sR][1] > Q[sR][2]) ? Q[sR][1] : Q[sR][2];
+    real dv = qL - qR;
     real v  = scaler * dv;
-    target += wiener_lpdf(rt[n] | choice[n], a, v, z, t0);  
-    // real dv = Q[sL, 2] - Q[sR, 1];  // Compare upper choice for sL vs lower choice for sR
-    // real v  = scaler * dv;
-    // target += wiener_lpdf(rt[n] | choice[n], a, v, z, t0);
 
-    int sC = choice[n] == 0 ? sL : sR;       // chosen state (sL if choice=0 (upper), sR if choice=1 (lower))
-    int aC = choice2[n] + 1;                  // chosen action (convert 0/1 to 1/2)
-    real pe = reward[n] - Q[sC, aC];
-    Q[sC, aC]  += alpha * theta * pe;
+    target += wiener_lpdf(rt[n] | choice[n], a, v, t0);
+
+    // Second-stage update from visited state and chosen action (0->1, 1->2)
+    int ss  = s2[n];
+    int a2  = (choice2[n] == 1) ? 2 : 1;
+    real pe = reward[n] - Q[ss][a2];
+    Q[ss][a2] += alpha * pe;
   }
 }
 
 generated quantities {
   vector[N] log_lik;
   {
-    matrix[S, 2] Qg = rep_matrix(0.5, S, 2);
+    array[S] vector[2] Qg;
+    for (s in 1:S) Qg[s] = rep_vector(0.0, 2);
+
     for (n in 1:N) {
-      int sL = state1[n];
-      int sR = state2[n];
-      
-      // Model-based Q-values with transition probabilities (70% common, 30% rare)
-      real prob_common = 0.7;
-      real prob_rare = 1.0 - prob_common;
-      
-      real mb_q_sL = prob_common * max(Qg[sL, :]) + prob_rare * max(Qg[sR, :]);
-      real mb_q_sR = prob_common * max(Qg[sR, :]) + prob_rare * max(Qg[sL, :]);
-      real dv = mb_q_sL - mb_q_sR;
+      int sL = mb1[n];
+      int sR = mb2[n];
+      real qL = (Qg[sL][1] > Qg[sL][2]) ? Qg[sL][1] : Qg[sL][2];
+      real qR = (Qg[sR][1] > Qg[sR][2]) ? Qg[sR][1] : Qg[sR][2];
+      real dv = qL - qR;
       real v  = scaler * dv;
-      log_lik[n] = wiener_lpdf(rt[n] | choice[n], a, v, z, t0);
-      int sC = choice[n] == 0 ? sL : sR;       // chosen state (sL if choice=0 (upper), sR if choice=1 (lower))
-      int aC = choice2[n] + 1;                  // chosen action (convert 0/1 to 1/2)
-      real pe = reward[n] - Qg[sC, aC];
-      Qg[sC, aC] += alpha * theta * pe;
+
+      log_lik[n] = wiener_lpdf(rt[n] | choice[n], a, v, t0);
+
+      int ss  = s2[n];
+      int a2  = (choice2[n] == 1) ? 2 : 1;
+      real pe = reward[n] - Qg[ss][a2];
+      Qg[ss][a2] += alpha * pe;
     }
   }
 }
