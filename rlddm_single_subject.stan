@@ -90,7 +90,7 @@ model {
 //   a      ~ normal(1.2, 0.35);
 //   t0     ~ normal(0.20, 0.06);
 //   scaler ~ normal(1.0, 0.5);
-  alpha  ~ beta(5, 5);
+  alpha  ~ beta(2, 10);
   a      ~ normal(1.2, 0.1);
   t0     ~ normal(0.25, 0.05);
 //   scaler ~ lognormal(log(0.30), 0.40);
