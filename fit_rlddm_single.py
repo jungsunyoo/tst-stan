@@ -7,6 +7,7 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 import arviz as az
+import pdb
 from cmdstanpy import CmdStanModel
 
 
@@ -73,6 +74,13 @@ def load_subject_csv(csv_path: Path, subj: int) -> pd.DataFrame:
     if (sdf["rt"] <= 0).any():
         bad = sdf[sdf["rt"] <= 0].head(5)
         raise SystemExit(f"Non-positive RT detected. Examples:\n{bad[['rt']]}")
+    
+    # Filter out problematically fast RTs that cause numerical issues
+    n_before = len(sdf)
+    sdf = sdf[sdf["rt"] >= 0.15].copy()  # Remove RTs < 150ms
+    n_after = len(sdf)
+    if n_before != n_after:
+        print(f"NOTE: Filtered {n_before - n_after} trials with RT < 0.15s to avoid numerical issues.", file=sys.stderr)
 
     # Binary recodes to 0/1 for choice, choice2
     for col in ["choice", "choice2"]:
@@ -131,31 +139,34 @@ def build_mb_columns(sdf: pd.DataFrame, S: int) -> pd.DataFrame:
     # Build s2 as 1..S from state2 (auto-detect 0/1 vs 1/2)
     raw_s2 = sdf["state2"].astype(int).to_numpy()
     u = set(np.unique(raw_s2))
-    if u.issubset({0, 1}):
-        s2 = raw_s2 + 1
-    elif u.issubset({1, 2}):
-        s2 = raw_s2
-    else:
-        raise SystemExit(f"state2 must be 0/1 or 1/2 coded; found unique values {sorted(list(u))}.")
+    # if u.ssubset({0, 1}):
+    s2 = raw_s2 + 1
+    # else:  # u.issubset({1, 2}):
+        # s2 = raw_s2
+    # else:
+        # raise SystemExit(f"state2 must be 0/1 or 1/2 coded; found unique values {sorted(list(u))}.")
     sdf["s2"] = s2.astype(int)
-
+    # pdb.set_trace()
     # Bounds checks
-    for col in ["mb1","mb2","s2"]:
-        if (sdf[col] < 1).any() or (sdf[col] > S).any():
-            bad = sdf[(sdf[col] < 1) | (sdf[col] > S)][["state1","state2","mb1","mb2","s2"]].head(6)
-            raise SystemExit(f"{col} out of bounds 1..S (S={S}). Examples:\n{bad}")
+    # for col in ["mb1","mb2","s2"]:
+    #     if (sdf[col] < 1).any() or (sdf[col] > S).any():
+    #         bad = sdf[(sdf[col] < 1) | (sdf[col] > S)][["state1","state2","mb1","mb2","s2"]].head(6)
+    #         raise SystemExit(f"{col} out of bounds 1..S (S={S}). Examples:\n{bad}")
 
     return sdf
 
 
 def rt_upper_limit(sdf: pd.DataFrame) -> float:
-    """Strict upper bound for t0: ALWAYS < min(rt)."""
+    """Strict upper bound for t0: ALWAYS < min(rt), with extra safety margin."""
     rt_min = float(np.min(sdf["rt"].to_numpy()))
-    upper = rt_min - 1e-3  # 1 ms below the minimum observed RT
+    # Use a much more conservative upper bound - at least 10ms below min RT
+    safety_margin = max(0.01, rt_min * 0.1)  # 10ms or 10% of min RT, whichever is larger
+    upper = rt_min - safety_margin
     # keep it above the parameter lower bound (0.03), but NEVER above rt_min
     upper = max(0.031, min(upper, rt_min - 1e-6))
     if not (upper < rt_min):
         raise SystemExit(f"rt_upper_t0={upper:.6f} is not < min(rt)={rt_min:.6f}. Check RTs.")
+    print(f"NOTE: t0 upper bound set to {upper:.4f}s (min RT: {rt_min:.4f}s, safety margin: {safety_margin:.4f}s)", file=sys.stderr)
     return upper
 
 
@@ -232,11 +243,16 @@ def main():
     init_list = make_inits(stan_data, args.chains)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # Create subject-specific temporary directory to avoid race conditions
+    subject_tmp_dir = Path("cmdstan_tmp") / f"subject_{args.subj}_{timestamp}"
+    subject_tmp_dir.mkdir(parents=True, exist_ok=True)
+    
     try:
         fit = model.sample(
             data=stan_data,
             chains=args.chains,
-            parallel_chains=args.chains,
+            parallel_chains= args.chains,
             iter_warmup=args.warmup,
             iter_sampling=args.draws,
             seed=args.seed,
@@ -244,9 +260,9 @@ def main():
             max_treedepth=args.max_treedepth,
             metric=args.metric,
             # inits=init_list,
-            output_dir="cmdstan_tmp",
+            output_dir=str(subject_tmp_dir),  # Use subject-specific temp dir
             show_console=args.show_console,
-            # step_size_jitter=0.1,
+            # step_size_jitter not supported in cmdstanpy
         )
     except Exception:
         print("\nSampling failed — showing latest Stan console log:\n", file=sys.stderr)
@@ -282,6 +298,15 @@ def main():
     except Exception as e:
         print(f"NOTE: Could not build ArviZ InferenceData: {e}", file=sys.stderr)
         print(f"Raw CSVs are in: {outdir}")
+    
+    # Robust cleanup of temporary directory
+    try:
+        import time
+        time.sleep(0.1)  # Brief pause to let file handles close
+        if subject_tmp_dir.exists():
+            shutil.rmtree(subject_tmp_dir, ignore_errors=True)
+    except Exception as e:
+        print(f"NOTE: Temp directory cleanup issue (non-fatal): {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":

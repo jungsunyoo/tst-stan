@@ -1,0 +1,2 @@
+participant_id,alpha_true,alpha_hat,a_true,a_hat,t0_true,t0_hat,scaler_true,scaler_hat
+20,0.1599809280146056,0.234,1.453042496571646,1.532,0.0966373891621205,0.103,0.2631758395780173,0.039

@@ -33,7 +33,8 @@ functions {
   // User-defined _lpdf supports conditional notation
   real wiener_lpdf(real rt, int choice, real a, real v, real t0) {
     if (rt <= t0) return negative_infinity();
-    real t = rt - t0;
+    // real t = rt - t0;
+    real t = fmax(1e-4, rt - t0); // avoid tiny t underflow
     real w = 0.5;  // fixed start bias
 
     // reflect for upper boundary (choice==0)
@@ -90,7 +91,7 @@ model {
 //   a      ~ normal(1.2, 0.35);
 //   t0     ~ normal(0.20, 0.06);
 //   scaler ~ normal(1.0, 0.5);
-  alpha  ~ beta(2, 10);
+  alpha  ~ beta(5, 5);
   a      ~ normal(1.2, 0.1);
   t0     ~ normal(0.25, 0.05);
 //   scaler ~ lognormal(log(0.30), 0.40);

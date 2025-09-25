@@ -1,0 +1,79 @@
+method = sample (Default)
+  sample
+    num_samples = 1000 (Default)
+    num_warmup = 2000
+    save_warmup = false (Default)
+    thin = 1 (Default)
+    adapt
+      engaged = true (Default)
+      gamma = 0.05 (Default)
+      delta = 0.999
+      kappa = 0.75 (Default)
+      t0 = 10 (Default)
+      init_buffer = 75 (Default)
+      term_buffer = 50 (Default)
+      window = 25 (Default)
+      save_metric = false (Default)
+    algorithm = hmc (Default)
+      hmc
+        engine = nuts (Default)
+          nuts
+            max_depth = 15
+        metric = dense_e
+        metric_file =  (Default)
+        stepsize = 1 (Default)
+        stepsize_jitter = 0 (Default)
+    num_chains = 1 (Default)
+id = 1 (Default)
+data
+  file = /tmp/tmp40oyq2z3/ubawasol.json
+init = 2 (Default)
+random
+  seed = 2030
+output
+  file = /Users/jy4657/Desktop/Repositories/tst-stan/cmdstan_tmp/rlddm_single_subject-20250924224648.csv
+  diagnostic_file =  (Default)
+  refresh = 100 (Default)
+  sig_figs = 8 (Default)
+  profile_file = profile.csv (Default)
+  save_cmdstan_config = false (Default)
+num_threads = 1 (Default)
+
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+Rejecting initial value:
+  Log probability evaluates to log(0), i.e. negative infinity.
+  Stan can't start sampling from this initial value.
+
+Gradient evaluation took 0.001488 seconds
+1000 transitions using 10 leapfrog steps per transition would take 14.88 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 3000 [  0%]  (Warmup)
+Iteration:  100 / 3000 [  3%]  (Warmup)
+Iteration:  200 / 3000 [  6%]  (Warmup)
+Iteration:  300 / 3000 [ 10%]  (Warmup)
+Iteration:  400 / 3000 [ 13%]  (Warmup)
+Iteration:  500 / 3000 [ 16%]  (Warmup)
+Iteration:  600 / 3000 [ 20%]  (Warmup)
+Iteration:  700 / 3000 [ 23%]  (Warmup)
+Iteration:  800 / 3000 [ 26%]  (Warmup)
+Iteration:  900 / 3000 [ 30%]  (Warmup)
+Iteration: 1000 / 3000 [ 33%]  (Warmup)
+Iteration: 1100 / 3000 [ 36%]  (Warmup)
+Iteration: 1200 / 3000 [ 40%]  (Warmup)
+Iteration: 1300 / 3000 [ 43%]  (Warmup)
+Iteration: 1400 / 3000 [ 46%]  (Warmup)
+Iteration: 1500 / 3000 [ 50%]  (Warmup)
+Iteration: 1600 / 3000 [ 53%]  (Warmup)

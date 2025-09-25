@@ -1,0 +1,46 @@
+NOTE: t0 upper bound set to 0.4076s (min RT: 0.4529s, safety margin: 0.0453s)
+00:28:29 - cmdstanpy - INFO - CmdStan start processing
+
+Data summary → N=300, S=2
+mb1 range: 1 … 1
+mb2 range: 2 … 2
+s2 unique: [1, 2]
+choice counts: {1: 154, 0: 146}
+choice2 counts: {1: 162, 0: 138} 
+
+chain 1 |[33m          [0m| 00:00 Statuschain 1 |[33m▋         [0m| 00:14 Iteration:    1 / 3000 [  0%]  (Warmup)chain 1 |[33m▉         [0m| 00:21 Iteration:  100 / 3000 [  3%]  (Warmup)chain 1 |[33m█▎        [0m| 00:50 Iteration:  200 / 3000 [  6%]  (Warmup)chain 1 |[33m█▌        [0m| 00:59 Iteration:  300 / 3000 [ 10%]  (Warmup)chain 1 |[33m█▉        [0m| 01:12 Iteration:  400 / 3000 [ 13%]  (Warmup)chain 1 |[33m██▏       [0m| 01:24 Iteration:  500 / 3000 [ 16%]  (Warmup)chain 1 |[33m██▌       [0m| 01:30 Iteration:  600 / 3000 [ 20%]  (Warmup)chain 1 |[33m██▊       [0m| 01:45 Iteration:  700 / 3000 [ 23%]  (Warmup)chain 1 |[33m███▏      [0m| 01:55 Iteration:  800 / 3000 [ 26%]  (Warmup)chain 1 |[33m███▍      [0m| 02:05 Iteration:  900 / 3000 [ 30%]  (Warmup)chain 1 |[33m███▊      [0m| 02:13 Iteration: 1000 / 3000 [ 33%]  (Warmup)chain 1 |[33m████      [0m| 02:21 Iteration: 1100 / 3000 [ 36%]  (Warmup)chain 1 |[33m████▍     [0m| 02:29 Iteration: 1200 / 3000 [ 40%]  (Warmup)chain 1 |[33m████▋     [0m| 02:36 Iteration: 1300 / 3000 [ 43%]  (Warmup)chain 1 |[33m█████     [0m| 02:43 Iteration: 1400 / 3000 [ 46%]  (Warmup)chain 1 |[33m█████▎    [0m| 02:50 Iteration: 1500 / 3000 [ 50%]  (Warmup)chain 1 |[33m█████▋    [0m| 02:57 Iteration: 1600 / 3000 [ 53%]  (Warmup)chain 1 |[33m█████▉    [0m| 03:05 Iteration: 1700 / 3000 [ 56%]  (Warmup)chain 1 |[33m██████▎   [0m| 03:14 Iteration: 1800 / 3000 [ 60%]  (Warmup)chain 1 |[33m██████▌   [0m| 03:22 Iteration: 1900 / 3000 [ 63%]  (Warmup)chain 1 |[34m███████▏  [0m| 03:25 Iteration: 2001 / 3000 [ 66%]  (Sampling)chain 1 |[34m███████▌  [0m| 03:28 Iteration: 2100 / 3000 [ 70%]  (Sampling)chain 1 |[34m███████▊  [0m| 03:31 Iteration: 2200 / 3000 [ 73%]  (Sampling)chain 1 |[34m████████▏ [0m| 03:34 Iteration: 2300 / 3000 [ 76%]  (Sampling)chain 1 |[34m████████▍ [0m| 03:37 Iteration: 2400 / 3000 [ 80%]  (Sampling)chain 1 |[34m████████▊ [0m| 03:40 Iteration: 2500 / 3000 [ 83%]  (Sampling)chain 1 |[34m█████████ [0m| 03:43 Iteration: 2600 / 3000 [ 86%]  (Sampling)chain 1 |[34m█████████▍[0m| 03:46 Iteration: 2700 / 3000 [ 90%]  (Sampling)chain 1 |[34m█████████▋[0m| 03:49 Iteration: 2800 / 3000 [ 93%]  (Sampling)chain 1 |[34m██████████[0m| 03:52 Iteration: 2900 / 3000 [ 96%]  (Sampling)chain 1 |[34m██████████[0m| 03:52 Sampling completed                       
+                                                                                00:32:22 - cmdstanpy - INFO - CmdStan done processing.
+00:32:22 - cmdstanpy - WARNING - Some chains may have failed to converge.
+	Chain 1 had 50 divergent transitions (5.0%)
+	Use the "diagnose()" method on the CmdStanMCMC object to see further information.
+diagnose() unavailable: 'numpy.ndarray' object is not callable
+arviz - WARNING - Shape validation failed: input_shape: (1, 1000), minimum_shape: (chains=2, draws=4)
+
+Saved: recovery_out/subject_9/rlddm_single_subject-20250925_002829_chain1.csv
+
+              mean     sd  hdi_2.5%  hdi_97.5%  mcse_mean  mcse_sd  ess_bulk  ess_tail  r_hat
+alpha       0.111  0.070     0.029      0.262      0.006    0.012     365.0     171.0    NaN
+a           1.358  0.035     1.292      1.427      0.002    0.001     371.0     314.0    NaN
+t0          0.398  0.006     0.386      0.407      0.000    0.000     365.0     255.0    NaN
+scaler      0.049  0.013     0.025      0.075      0.001    0.001     375.0     336.0    NaN
+log_scaler -3.045  0.264    -3.581     -2.552      0.014    0.009     375.0     336.0    NaN
+
+Saved outputs under: recovery_out/subject_9
+
+=== FITTING MODE: Subject 9 ===
+True parameters for subject 9:
+  α = 0.931
+  a = 1.267
+  t0 = 0.396
+  scaler = 0.165
+
+Fitting subject 9...
+Command: /opt/anaconda3/envs/stan/bin/python fit_rlddm_single.py --csv recovery_out/simulated_data_2planets.csv --subj 9 --states 2 --chains 1 --warmup 2000 --draws 1000 --adapt_delta 0.999 --max_treedepth 15 --metric dense_e --seed 2036 --outdir recovery_out/subject_9
+
+✅ Fitting successful!
+Estimated parameters for subject 9:
+  α = 0.111 (true: 0.931)
+  a = 1.358 (true: 1.267)
+  t0 = 0.398 (true: 0.396)
+  scaler = 0.049 (true: 0.165)
+Results saved to recovery_out/subject_9/recovery_result.csv
