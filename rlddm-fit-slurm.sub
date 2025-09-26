@@ -4,7 +4,7 @@
 #SBATCH --ntasks=1
 #SBATCH -o slurm-%j.out         # unique per job
 #SBATCH -c 1                    
-#SBATCH --time=120             # 2 hours
+#SBATCH --time=60             # 1 hour
 
 # Activate conda environment
 source ~/.bashrc
