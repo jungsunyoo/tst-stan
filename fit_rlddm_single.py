@@ -269,10 +269,10 @@ def main():
         print_latest_console_logs("cmdstan_tmp")
         raise
 
-    # Copy per-chain CSVs
+    # Copy per-chain CSVs with subject ID in filename
     for i, src in enumerate(fit.runset.csv_files, start=1):
         if src and Path(src).exists():
-            dest = outdir / f"{Path(args.stan).stem}-{timestamp}_chain{i}.csv"
+            dest = outdir / f"subject{args.subj}_chain{i}.csv"
             shutil.copyfile(src, dest)
             print(f"Saved: {dest}")
         else:
@@ -292,8 +292,8 @@ def main():
         summ = az.summary(idata, var_names=["alpha","a","t0","scaler","log_scaler"], hdi_prob=0.95)
 
         print("\n", summ.to_string())
-        az.to_netcdf(idata, outdir / f"{Path(args.stan).stem}-{timestamp}.nc")
-        summ.to_csv(outdir / f"{Path(args.stan).stem}-{timestamp}-summary.csv")
+        az.to_netcdf(idata, outdir / f"subject{args.subj}.nc")
+        summ.to_csv(outdir / f"subject{args.subj}-summary.csv")
         print(f"\nSaved outputs under: {outdir}")
     except Exception as e:
         print(f"NOTE: Could not build ArviZ InferenceData: {e}", file=sys.stderr)

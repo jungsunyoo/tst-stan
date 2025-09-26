@@ -1,180 +1,0 @@
-NOTE: t0 upper bound set to 0.1776s (min RT: 0.1973s, safety margin: 0.0197s)
-00:29:21 - cmdstanpy - INFO - CmdStan start processing
-
-Data summary → N=300, S=2
-mb1 range: 1 … 1
-mb2 range: 2 … 2
-s2 unique: [1, 2]
-choice counts: {0: 163, 1: 137}
-choice2 counts: {0: 245, 1: 55} 
-
-chain 1 |[33m          [0m| 00:00 Statuschain 1 |[33m▋         [0m| 00:27 Iteration:    1 / 3000 [  0%]  (Warmup)chain 1 |[33m▉         [0m| 00:37 Iteration:  100 / 3000 [  3%]  (Warmup)chain 1 |[33m█▎        [0m| 00:43 Iteration:  200 / 3000 [  6%]  (Warmup)chain 1 |[33m█▌        [0m| 00:51 Iteration:  300 / 3000 [ 10%]  (Warmup)chain 1 |[33m█▉        [0m| 01:32 Iteration:  400 / 3000 [ 13%]  (Warmup)chain 1 |[33m██▏       [0m| 01:40 Iteration:  500 / 3000 [ 16%]  (Warmup)chain 1 |[33m██▌       [0m| 01:46 Iteration:  600 / 3000 [ 20%]  (Warmup)chain 1 |[33m██▊       [0m| 01:54 Iteration:  700 / 3000 [ 23%]  (Warmup)chain 1 |[33m███▏      [0m| 02:01 Iteration:  800 / 3000 [ 26%]  (Warmup)chain 1 |[33m███▍      [0m| 02:05 Iteration:  900 / 3000 [ 30%]  (Warmup)chain 1 |[33m███▊      [0m| 02:09 Iteration: 1000 / 3000 [ 33%]  (Warmup)chain 1 |[33m████      [0m| 02:14 Iteration: 1100 / 3000 [ 36%]  (Warmup)chain 1 |[33m████▍     [0m| 02:22 Iteration: 1200 / 3000 [ 40%]  (Warmup)chain 1 |[33m████▋     [0m| 02:28 Iteration: 1300 / 3000 [ 43%]  (Warmup)chain 1 |[33m█████     [0m| 02:34 Iteration: 1400 / 3000 [ 46%]  (Warmup)chain 1 |[33m█████▎    [0m| 02:40 Iteration: 1500 / 3000 [ 50%]  (Warmup)chain 1 |[33m█████▋    [0m| 02:46 Iteration: 1600 / 3000 [ 53%]  (Warmup)chain 1 |[33m█████▉    [0m| 02:52 Iteration: 1700 / 3000 [ 56%]  (Warmup)chain 1 |[33m██████▎   [0m| 02:58 Iteration: 1800 / 3000 [ 60%]  (Warmup)chain 1 |[33m██████▌   [0m| 03:06 Iteration: 1900 / 3000 [ 63%]  (Warmup)chain 1 |[34m███████▏  [0m| 03:11 Iteration: 2001 / 3000 [ 66%]  (Sampling)chain 1 |[34m███████▌  [0m| 03:16 Iteration: 2100 / 3000 [ 70%]  (Sampling)chain 1 |[34m███████▊  [0m| 03:21 Iteration: 2200 / 3000 [ 73%]  (Sampling)chain 1 |[34m████████▏ [0m| 03:25 Iteration: 2300 / 3000 [ 76%]  (Sampling)chain 1 |[34m████████▍ [0m| 03:30 Iteration: 2400 / 3000 [ 80%]  (Sampling)chain 1 |[34m████████▊ [0m| 03:35 Iteration: 2500 / 3000 [ 83%]  (Sampling)chain 1 |[34m█████████ [0m| 03:40 Iteration: 2600 / 3000 [ 86%]  (Sampling)chain 1 |[34m█████████▍[0m| 03:45 Iteration: 2700 / 3000 [ 90%]  (Sampling)chain 1 |[34m█████████▋[0m| 03:50 Iteration: 2800 / 3000 [ 93%]  (Sampling)chain 1 |[34m██████████[0m| 03:54 Iteration: 2900 / 3000 [ 96%]  (Sampling)chain 1 |[34m██████████[0m| 03:54 Sampling completed                       
-                                                                                00:33:16 - cmdstanpy - INFO - CmdStan done processing.
-00:33:16 - cmdstanpy - WARNING - Some chains may have failed to converge.
-	Chain 1 had 29 divergent transitions (2.9%)
-	Use the "diagnose()" method on the CmdStanMCMC object to see further information.
-
-Sampling failed — showing latest Stan console log:
-
-
-======= Stan console (cmdstan_tmp/rlddm_single_subject-20250924231731_0-stdout.txt) =======
-method = sample (Default)
-  sample
-    num_samples = 1000 (Default)
-    num_warmup = 2000
-    save_warmup = false (Default)
-    thin = 1 (Default)
-    adapt
-      engaged = true (Default)
-      gamma = 0.05 (Default)
-      delta = 0.999
-      kappa = 0.75 (Default)
-      t0 = 10 (Default)
-      init_buffer = 75 (Default)
-      term_buffer = 50 (Default)
-      window = 25 (Default)
-      save_metric = false (Default)
-    algorithm = hmc (Default)
-      hmc
-        engine = nuts (Default)
-          nuts
-            max_depth = 15
-        metric = dense_e
-        metric_file =  (Default)
-        stepsize = 1 (Default)
-        stepsize_jitter = 0 (Default)
-    num_chains = 1 (Default)
-id = 1 (Default)
-data
-  file = /Users/jy4657/Desktop/Repositories/tst-stan/recovery_out/tmp_subject_14/tmphrw0uut2/yv4tq0aq.json
-init = 2 (Default)
-random
-  seed = 2041
-output
-  file = /Users/jy4657/Desktop/Repositories/tst-stan/cmdstan_tmp/rlddm_single_subject-20250924231731.csv
-  diagnostic_file =  (Default)
-  refresh = 100 (Default)
-  sig_figs = 8 (Default)
-  profile_file = profile.csv (Default)
-  save_cmdstan_config = false (Default)
-num_threads = 1 (Default)
-
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-Rejecting initial value:
-  Log probability evaluates to log(0), i.e. negative infinity.
-  Stan can't start sampling from this initial value.
-
-Gradient evaluation took 0.00562 seconds
-1000 transitions using 10 leapfrog steps per transition would take 56.2 seconds.
-Adjust your expectations accordingly!
-
-
-Iteration:    1 / 3000 [  0%]  (Warmup)
-Iteration:  100 / 3000 [  3%]  (Warmup)
-Iteration:  200 / 3000 [  6%]  (Warmup)
-Iteration:  300 / 3000 [ 10%]  (Warmup)
-Iteration:  400 / 3000 [ 13%]  (Warmup)
-Iteration:  500 / 3000 [ 16%]  (Warmup)
-Iteration:  600 / 3000 [ 20%]  (Warmup)
-Iteration:  700 / 3000 [ 23%]  (Warmup)
-Iteration:  800 / 3000 [ 26%]  (Warmup)
-Iteration:  900 / 3000 [ 30%]  (Warmup)
-Iteration: 1000 / 3000 [ 33%]  (Warmup)
-Iteration: 1100 / 3000 [ 36%]  (Warmup)
-Iteration: 1200 / 3000 [ 40%]  (Warmup)
-Iteration: 1300 / 3000 [ 43%]  (Warmup)
-Iteration: 1400 / 3000 [ 46%]  (Warmup)
-Iteration: 1500 / 3000 [ 50%]  (Warmup)
-Iteration: 1600 / 3000 [ 53%]  (Warmup)
-Iteration: 1700 / 3000 [ 56%]  (Warmup)
-Iteration: 1800 / 3000 [ 60%]  (Warmup)
-Iteration: 1900 / 3000 [ 63%]  (Warmup)
-Iteration: 2000 / 3000 [ 66%]  (Warmup)
-Iteration: 2001 / 3000 [ 66%]  (Sampling)
-Iteration: 2100 / 3000 [ 70%]  (Sampling)
-Iteration: 2200 / 3000 [ 73%]  (Sampling)
-Iteration: 2300 / 3000 [ 76%]  (Sampling)
-Iteration: 2400 / 3000 [ 80%]  (Sampling)
-Iteration: 2500 / 3000 [ 83%]  (Sampling)
-Iteration: 2600 / 3000 [ 86%]  (Sampling)
-Iteration: 2700 / 3000 [ 90%]  (Sampling)
-Iteration: 2800 / 3000 [ 93%]  (Sampling)
-Iteration: 2900 / 3000 [ 96%]  (Sampling)
-Iteration: 3000 / 3000 [100%]  (Sampling)
-
- Elapsed Time: 536.665 seconds (Warm-up)
-               654.492 seconds (Sampling)
-               1191.16 seconds (Total)
-
-
-======= end console =======
-
-
-Traceback (most recent call last):
-  File "/Users/jy4657/Desktop/Repositories/tst-stan/fit_rlddm_single.py", line 313, in <module>
-    main()
-  File "/Users/jy4657/Desktop/Repositories/tst-stan/fit_rlddm_single.py", line 252, in main
-    fit = model.sample(
-          ^^^^^^^^^^^^^
-  File "/opt/anaconda3/envs/stan/lib/python3.11/site-packages/cmdstanpy/model.py", line 1028, in sample
-    with temp_single_json(data) as _data, temp_inits(
-  File "/opt/anaconda3/envs/stan/lib/python3.11/contextlib.py", line 144, in __exit__
-    next(self.gen)
-  File "/opt/anaconda3/envs/stan/lib/python3.11/site-packages/cmdstanpy/utils/filesystem.py", line 124, in _temp_single_json
-    os.remove(data_file)
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/jy4657/Desktop/Repositories/tst-stan/recovery_out/tmp_subject_19_1758774559616/tmp0boesywt/0zxk83x1.json'
-
-=== FITTING MODE: Subject 19 ===
-True parameters for subject 19:
-  α = 0.338
-  a = 1.059
-  t0 = 0.159
-  scaler = 0.152
-
-Fitting subject 19...
-Command: /opt/anaconda3/envs/stan/bin/python fit_rlddm_single.py --csv recovery_out/simulated_data_2planets.csv --subj 19 --states 2 --chains 1 --warmup 2000 --draws 1000 --adapt_delta 0.999 --max_treedepth 15 --metric dense_e --seed 2046 --outdir recovery_out/subject_19
-❌ Fitting failed for subject 19
