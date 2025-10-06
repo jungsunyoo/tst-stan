@@ -1,0 +1,28 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                log_rt2   R-squared:                       0.160
+Model:                            OLS   Adj. R-squared:                  0.160
+Method:                 Least Squares   F-statistic:                     551.2
+Date:                Sun, 28 Sep 2025   Prob (F-statistic):           3.21e-72
+Time:                        19:17:17   Log-Likelihood:                -42096.
+No. Observations:              122802   AIC:                         8.420e+04
+Df Residuals:                  122797   BIC:                         8.425e+04
+Df Model:                           4                                         
+Covariance Type:              cluster                                         
+===============================================================================
+                  coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------
+Intercept      -0.3597      0.021    -17.350      0.000      -0.401      -0.319
+surprisal       0.2615      0.008     31.421      0.000       0.245       0.278
+RPE_mag         0.4174      0.021     20.260      0.000       0.377       0.458
+set_size       -0.0150      0.006     -2.619      0.010      -0.026      -0.004
+trial_index    -0.0005   3.28e-05    -15.428      0.000      -0.001      -0.000
+==============================================================================
+Omnibus:                    39336.726   Durbin-Watson:                   1.407
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           688659.376
+Skew:                          -1.088   Prob(JB):                         0.00
+Kurtosis:                      14.396   Cond. No.                         824.
+==============================================================================
+
+Notes:
+[1] Standard Errors are robust to cluster correlation (cluster)

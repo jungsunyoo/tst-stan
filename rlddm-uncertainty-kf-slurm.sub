@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+#SBATCH -J rlddm-fit-single     # job name
+#SBATCH -p all
+#SBATCH --ntasks=1
+#SBATCH -o slurm-%j.out         # unique per job
+#SBATCH -c 1                    
+#SBATCH --time=60             # 1 hour
+
+# Activate conda environment
+source ~/.bashrc
+conda activate stan
+
+# Arguments from bash script:
+# $1 = subject number
+# $2 = states number (2, 3, 4, or 5)
+
+# Construct CSV filename based on states
+CSV_FILE="hddm2_fixed_final_${2}states.csv"
+
+# Create organized output directory structure
+# OUTDIR="fit_out/${2}state"
+OUTDIR="fit_out/uncertainty_kf/${2}state"
+mkdir -p "$OUTDIR"
+
+echo "Starting RLDDM fit for Subject $1, States $2"
+echo "Using CSV: $CSV_FILE"
+echo "Output directory: $OUTDIR"
+echo "Job ID: $SLURM_JOB_ID"
+echo "Node: $SLURM_NODELIST" 
+echo "Start time: $(date)"
+
+# Run fit_rlddm_single.py with organized output directory
+
+python3 -u rlddm-uncertainty.py \
+  --csv "$CSV_FILE" \
+  --subj $1 \
+  --states $2 \
+  --uncertainty_model kalman \
+  --kf_beta2 4.0 --kf_q 0.005 --kf_r 0.25 --kf_p0 0.25 \
+  --outdir "$OUTDIR" \
+  --warmup 3000 \
+  --draws 1000 \
+
+
+echo "End time: $(date)"
+echo "RLDDM fit completed for Subject $1, States $2"
+
+exit
