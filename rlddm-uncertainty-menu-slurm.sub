@@ -30,7 +30,7 @@ echo "Start time: $(date)"
 
 
 
-python3 -u fit_rlddm_single.py \
+python3 -u rlddm-uncertainty.py \
   --csv "$CSV_FILE" \
   --subj $1 \
   --states $2 \
