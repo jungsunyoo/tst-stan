@@ -347,8 +347,8 @@ def main():
     for i, src in enumerate(fit.runset.csv_files, start=1):
         if src and Path(src).exists():
             dest = outdir / f"subject{args.subj}_chain{i}.csv"
-            shutil.copyfile(src, dest)
-            print(f"Saved: {dest}")
+            # shutil.copyfile(src, dest)
+            # print(f"Saved: {dest}")
         else:
             print(f"WARNING: CSV for chain {i} not found at {src}", file=sys.stderr)
 
@@ -370,8 +370,8 @@ def main():
         )
         print("\n", summ.to_string())
         az.to_netcdf(idata, outdir / f"subject{args.subj}.nc")
-        summ.to_csv(outdir / f"subject{args.subj}-summary.csv")
-        print(f"\nSaved outputs under: {outdir}")
+        # summ.to_csv(outdir / f"subject{args.subj}-summary.csv")
+        # print(f"\nSaved outputs under: {outdir}")
     except Exception as e:
         print(f"NOTE: Could not build ArviZ InferenceData: {e}", file=sys.stderr)
         print(f"Raw CSVs are in: {outdir}")
