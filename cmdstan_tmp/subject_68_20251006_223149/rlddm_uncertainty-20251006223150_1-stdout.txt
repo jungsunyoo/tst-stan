@@ -1,0 +1,66 @@
+method = sample (Default)
+  sample
+    num_samples = 1000 (Default)
+    num_warmup = 3000
+    save_warmup = false (Default)
+    thin = 1 (Default)
+    adapt
+      engaged = true (Default)
+      gamma = 0.05 (Default)
+      delta = 0.95
+      kappa = 0.75 (Default)
+      t0 = 10 (Default)
+      init_buffer = 75 (Default)
+      term_buffer = 50 (Default)
+      window = 25 (Default)
+      save_metric = false (Default)
+    algorithm = hmc (Default)
+      hmc
+        engine = nuts (Default)
+          nuts
+            max_depth = 12
+        metric = diag_e (Default)
+        metric_file =  (Default)
+        stepsize = 1 (Default)
+        stepsize_jitter = 0 (Default)
+    num_chains = 1 (Default)
+id = 2
+data
+  file = /tmp/tmp7kdzw59u/dob2le05.json
+init = 2 (Default)
+random
+  seed = 2027
+output
+  file = /mnt/cup/people/jy4657/Repositories/tst-stan/cmdstan_tmp/subject_68_20251006_223149/rlddm_uncertainty-20251006223150_2.csv
+  diagnostic_file =  (Default)
+  refresh = 100 (Default)
+  sig_figs = 8 (Default)
+  profile_file = profile.csv (Default)
+  save_cmdstan_config = false (Default)
+num_threads = 1 (Default)
+
+
+Gradient evaluation took 0.00129 seconds
+1000 transitions using 10 leapfrog steps per transition would take 12.9 seconds.
+Adjust your expectations accordingly!
+
+
+Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Exception: wiener_lpdf: Boundary separation is 0, but must be positive finite! (in 'rlddm_uncertainty.stan', line 117, column 4 to column 61)
+If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+
+Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Exception: wiener_lpdf: Boundary separation is 0, but must be positive finite! (in 'rlddm_uncertainty.stan', line 117, column 4 to column 61)
+If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+
+Iteration:    1 / 4000 [  0%]  (Warmup)
+Iteration:  100 / 4000 [  2%]  (Warmup)
+Iteration:  200 / 4000 [  5%]  (Warmup)
+Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+Exception: wiener_lpdf: Boundary separation is 0, but must be positive finite! (in 'rlddm_uncertainty.stan', line 117, column 4 to column 61)
+If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+
+Iteration:  300 / 4000 [  7%]  (Warmup)

@@ -1,0 +1,5 @@
+slurm*.out
+subject*_chain*.csv
+subject*.csv
+*.nc
+
