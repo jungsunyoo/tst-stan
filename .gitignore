@@ -1,0 +1,7 @@
+.DS_Store
+.ipynb_checkpoints/
+.nfs*
+notebook_outputs/
+paper_outputs/
+fit_out/
+*.csv.gz
