@@ -6,7 +6,7 @@
 #SBATCH --time=60
 #SBATCH -o slurm-%j.out
 
-set -euo pipefail
+set -eo pipefail
 
 # Arguments from wrapper:
 # $1 = subject number
