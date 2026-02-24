@@ -1,294 +1,0 @@
-Starting DDM cache regression
-Subject: 13 | States: 2
-CSV: hddm2_fixed_final_2states.csv
-Outdir: fit_out/ddm_cache_regression/2state
-Job ID: 3595821
-Node: spockmk2-22-01
-Start time: Mon Feb 23 07:43:52 PM EST 2026
-
-19:44:25 - cmdstanpy - INFO - compiling stan file /tmp/stanrun_2379271_1771893865_subj13_S2_20260223_194425/ddm_cache_regression_subject.stan to exe file /tmp/stanrun_2379271_1771893865_subj13_S2_20260223_194425/ddm_cache_regression_subject
-19:45:29 - cmdstanpy - INFO - compiled model executable: /tmp/stanrun_2379271_1771893865_subj13_S2_20260223_194425/ddm_cache_regression_subject
-19:45:29 - cmdstanpy - INFO - CmdStan start processing
-chain 1 |[33m          [0m| 00:00 Status
-chain 2 |[33m          [0m| 00:00 Status[A
-
-chain 3 |[33m          [0m| 00:00 Status[A[A
-
-
-chain 4 |[33m          [0m| 00:00 Status[A[A[A
-
-chain 3 |[33m▏         [0m| 00:00 Status[A[Achain 1 |[33m▏         [0m| 00:00 Status
-
-
-chain 4 |[33m▍         [0m| 00:14 Iteration:    1 / 4000 [  0%]  (Warmup)[A[A[A
-
-chain 3 |[33m▍         [0m| 00:21 Iteration:    1 / 4000 [  0%]  (Warmup)[A[A
-chain 2 |[33m▍         [0m| 00:23 Iteration:    1 / 4000 [  0%]  (Warmup)[A
-
-
-chain 4 |[33m▋         [0m| 00:31 Iteration:  100 / 4000 [  2%]  (Warmup)[A[A[Achain 1 |[33m▍         [0m| 00:33 Iteration:    1 / 4000 [  0%]  (Warmup)
-
-chain 3 |[33m▋         [0m| 00:41 Iteration:  100 / 4000 [  2%]  (Warmup)[A[A
-
-
-chain 4 |[33m▉         [0m| 00:42 Iteration:  200 / 4000 [  5%]  (Warmup)[A[A[A
-chain 2 |[33m▋         [0m| 00:44 Iteration:  100 / 4000 [  2%]  (Warmup)[A
-
-
-chain 4 |[33m█▏        [0m| 00:50 Iteration:  300 / 4000 [  7%]  (Warmup)[A[A[Achain 1 |[33m▋         [0m| 00:51 Iteration:  100 / 4000 [  2%]  (Warmup)
-
-chain 3 |[33m▉         [0m| 00:55 Iteration:  200 / 4000 [  5%]  (Warmup)[A[Achain 1 |[33m▉         [0m| 01:01 Iteration:  200 / 4000 [  5%]  (Warmup)
-chain 2 |[33m▉         [0m| 01:01 Iteration:  200 / 4000 [  5%]  (Warmup)[A
-
-chain 3 |[33m█▏        [0m| 01:03 Iteration:  300 / 4000 [  7%]  (Warmup)[A[A
-
-
-chain 4 |[33m█▍        [0m| 01:08 Iteration:  400 / 4000 [ 10%]  (Warmup)[A[A[A
-chain 2 |[33m█▏        [0m| 01:08 Iteration:  300 / 4000 [  7%]  (Warmup)[Achain 1 |[33m█▏        [0m| 01:09 Iteration:  300 / 4000 [  7%]  (Warmup)
-
-chain 3 |[33m█▍        [0m| 01:12 Iteration:  400 / 4000 [ 10%]  (Warmup)[A[A
-
-
-chain 4 |[33m█▋        [0m| 01:18 Iteration:  500 / 4000 [ 12%]  (Warmup)[A[A[A
-
-chain 3 |[33m█▋        [0m| 01:20 Iteration:  500 / 4000 [ 12%]  (Warmup)[A[A
-
-
-chain 4 |[33m█▉        [0m| 01:26 Iteration:  600 / 4000 [ 15%]  (Warmup)[A[A[A
-chain 2 |[33m█▍        [0m| 01:28 Iteration:  400 / 4000 [ 10%]  (Warmup)[A
-
-chain 3 |[33m█▉        [0m| 01:29 Iteration:  600 / 4000 [ 15%]  (Warmup)[A[Achain 1 |[33m█▍        [0m| 01:30 Iteration:  400 / 4000 [ 10%]  (Warmup)
-chain 2 |[33m█▋        [0m| 01:37 Iteration:  500 / 4000 [ 12%]  (Warmup)[A
-
-
-chain 4 |[33m██▏       [0m| 01:37 Iteration:  700 / 4000 [ 17%]  (Warmup)[A[A[Achain 1 |[33m█▋        [0m| 01:38 Iteration:  500 / 4000 [ 12%]  (Warmup)
-
-chain 3 |[33m██▏       [0m| 01:39 Iteration:  700 / 4000 [ 17%]  (Warmup)[A[Achain 1 |[33m█▉        [0m| 01:47 Iteration:  600 / 4000 [ 15%]  (Warmup)
-chain 2 |[33m█▉        [0m| 01:48 Iteration:  600 / 4000 [ 15%]  (Warmup)[A
-
-
-chain 4 |[33m██▍       [0m| 01:53 Iteration:  800 / 4000 [ 20%]  (Warmup)[A[A[Achain 1 |[33m██▏       [0m| 01:55 Iteration:  700 / 4000 [ 17%]  (Warmup)
-
-chain 3 |[33m██▍       [0m| 01:56 Iteration:  800 / 4000 [ 20%]  (Warmup)[A[A
-chain 2 |[33m██▏       [0m| 01:58 Iteration:  700 / 4000 [ 17%]  (Warmup)[A
-
-
-chain 4 |[33m██▌       [0m| 02:01 Iteration:  900 / 4000 [ 22%]  (Warmup)[A[A[A
-
-chain 3 |[33m██▌       [0m| 02:05 Iteration:  900 / 4000 [ 22%]  (Warmup)[A[A
-chain 2 |[33m██▍       [0m| 02:09 Iteration:  800 / 4000 [ 20%]  (Warmup)[A
-
-
-chain 4 |[33m██▊       [0m| 02:09 Iteration: 1000 / 4000 [ 25%]  (Warmup)[A[A[A
-
-chain 3 |[33m██▊       [0m| 02:13 Iteration: 1000 / 4000 [ 25%]  (Warmup)[A[A
-chain 2 |[33m██▌       [0m| 02:16 Iteration:  900 / 4000 [ 22%]  (Warmup)[A
-
-
-chain 4 |[33m███       [0m| 02:17 Iteration: 1100 / 4000 [ 27%]  (Warmup)[A[A[Achain 1 |[33m██▍       [0m| 02:19 Iteration:  800 / 4000 [ 20%]  (Warmup)
-
-chain 3 |[33m███       [0m| 02:21 Iteration: 1100 / 4000 [ 27%]  (Warmup)[A[A
-chain 2 |[33m██▊       [0m| 02:23 Iteration: 1000 / 4000 [ 25%]  (Warmup)[Achain 1 |[33m██▌       [0m| 02:26 Iteration:  900 / 4000 [ 22%]  (Warmup)
-
-
-chain 4 |[33m███▎      [0m| 02:27 Iteration: 1200 / 4000 [ 30%]  (Warmup)[A[A[A
-
-chain 3 |[33m███▎      [0m| 02:29 Iteration: 1200 / 4000 [ 30%]  (Warmup)[A[A
-chain 2 |[33m███       [0m| 02:32 Iteration: 1100 / 4000 [ 27%]  (Warmup)[Achain 1 |[33m██▊       [0m| 02:34 Iteration: 1000 / 4000 [ 25%]  (Warmup)
-
-
-chain 4 |[33m███▌      [0m| 02:36 Iteration: 1300 / 4000 [ 32%]  (Warmup)[A[A[A
-
-chain 3 |[33m███▌      [0m| 02:38 Iteration: 1300 / 4000 [ 32%]  (Warmup)[A[A
-chain 2 |[33m███▎      [0m| 02:40 Iteration: 1200 / 4000 [ 30%]  (Warmup)[Achain 1 |[33m███       [0m| 02:43 Iteration: 1100 / 4000 [ 27%]  (Warmup)
-
-
-chain 4 |[33m███▊      [0m| 02:44 Iteration: 1400 / 4000 [ 35%]  (Warmup)[A[A[A
-
-chain 3 |[33m███▊      [0m| 02:47 Iteration: 1400 / 4000 [ 35%]  (Warmup)[A[A
-chain 2 |[33m███▌      [0m| 02:48 Iteration: 1300 / 4000 [ 32%]  (Warmup)[Achain 1 |[33m███▎      [0m| 02:52 Iteration: 1200 / 4000 [ 30%]  (Warmup)
-
-
-chain 4 |[33m████      [0m| 02:55 Iteration: 1500 / 4000 [ 37%]  (Warmup)[A[A[A
-
-chain 3 |[33m████      [0m| 02:57 Iteration: 1500 / 4000 [ 37%]  (Warmup)[A[A
-chain 2 |[33m███▊      [0m| 02:58 Iteration: 1400 / 4000 [ 35%]  (Warmup)[Achain 1 |[33m███▌      [0m| 02:59 Iteration: 1300 / 4000 [ 32%]  (Warmup)
-
-
-chain 4 |[33m████▎     [0m| 03:05 Iteration: 1600 / 4000 [ 40%]  (Warmup)[A[A[A
-
-chain 3 |[33m████▎     [0m| 03:05 Iteration: 1600 / 4000 [ 40%]  (Warmup)[A[A
-chain 2 |[33m████      [0m| 03:06 Iteration: 1500 / 4000 [ 37%]  (Warmup)[Achain 1 |[33m███▊      [0m| 03:08 Iteration: 1400 / 4000 [ 35%]  (Warmup)
-
-
-chain 4 |[33m████▌     [0m| 03:14 Iteration: 1700 / 4000 [ 42%]  (Warmup)[A[A[A
-
-chain 3 |[33m████▌     [0m| 03:14 Iteration: 1700 / 4000 [ 42%]  (Warmup)[A[A
-chain 2 |[33m████▎     [0m| 03:14 Iteration: 1600 / 4000 [ 40%]  (Warmup)[Achain 1 |[33m████      [0m| 03:19 Iteration: 1500 / 4000 [ 37%]  (Warmup)
-chain 2 |[33m████▌     [0m| 03:23 Iteration: 1700 / 4000 [ 42%]  (Warmup)[A
-
-
-chain 4 |[33m████▊     [0m| 03:25 Iteration: 1800 / 4000 [ 45%]  (Warmup)[A[A[A
-
-chain 3 |[33m████▊     [0m| 03:26 Iteration: 1800 / 4000 [ 45%]  (Warmup)[A[Achain 1 |[33m████▎     [0m| 03:29 Iteration: 1600 / 4000 [ 40%]  (Warmup)
-chain 2 |[33m████▊     [0m| 03:31 Iteration: 1800 / 4000 [ 45%]  (Warmup)[A
-
-
-chain 4 |[33m█████     [0m| 03:34 Iteration: 1900 / 4000 [ 47%]  (Warmup)[A[A[A
-
-chain 3 |[33m█████     [0m| 03:38 Iteration: 1900 / 4000 [ 47%]  (Warmup)[A[A
-chain 2 |[33m█████     [0m| 03:39 Iteration: 1900 / 4000 [ 47%]  (Warmup)[Achain 1 |[33m████▌     [0m| 03:40 Iteration: 1700 / 4000 [ 42%]  (Warmup)
-
-
-chain 4 |[33m█████▏    [0m| 03:44 Iteration: 2000 / 4000 [ 50%]  (Warmup)[A[A[A
-chain 2 |[33m█████▏    [0m| 03:48 Iteration: 2000 / 4000 [ 50%]  (Warmup)[A
-
-chain 3 |[33m█████▏    [0m| 03:49 Iteration: 2000 / 4000 [ 50%]  (Warmup)[A[Achain 1 |[33m████▊     [0m| 03:52 Iteration: 1800 / 4000 [ 45%]  (Warmup)
-
-
-chain 4 |[33m█████▍    [0m| 03:54 Iteration: 2100 / 4000 [ 52%]  (Warmup)[A[A[A
-chain 2 |[33m█████▍    [0m| 03:57 Iteration: 2100 / 4000 [ 52%]  (Warmup)[A
-
-chain 3 |[33m█████▍    [0m| 04:00 Iteration: 2100 / 4000 [ 52%]  (Warmup)[A[Achain 1 |[33m█████     [0m| 04:02 Iteration: 1900 / 4000 [ 47%]  (Warmup)
-
-
-chain 4 |[33m█████▋    [0m| 04:04 Iteration: 2200 / 4000 [ 55%]  (Warmup)[A[A[A
-chain 2 |[33m█████▋    [0m| 04:06 Iteration: 2200 / 4000 [ 55%]  (Warmup)[A
-
-chain 3 |[33m█████▋    [0m| 04:12 Iteration: 2200 / 4000 [ 55%]  (Warmup)[A[Achain 1 |[33m█████▏    [0m| 04:13 Iteration: 2000 / 4000 [ 50%]  (Warmup)
-chain 2 |[33m█████▉    [0m| 04:14 Iteration: 2300 / 4000 [ 57%]  (Warmup)[A
-
-
-chain 4 |[33m█████▉    [0m| 04:14 Iteration: 2300 / 4000 [ 57%]  (Warmup)[A[A[A
-chain 2 |[33m██████▏   [0m| 04:22 Iteration: 2400 / 4000 [ 60%]  (Warmup)[Achain 1 |[33m█████▍    [0m| 04:24 Iteration: 2100 / 4000 [ 52%]  (Warmup)
-
-
-chain 4 |[33m██████▏   [0m| 04:24 Iteration: 2400 / 4000 [ 60%]  (Warmup)[A[A[A
-
-chain 3 |[33m█████▉    [0m| 04:24 Iteration: 2300 / 4000 [ 57%]  (Warmup)[A[A
-chain 2 |[33m██████▍   [0m| 04:32 Iteration: 2500 / 4000 [ 62%]  (Warmup)[A
-
-chain 3 |[33m██████▏   [0m| 04:35 Iteration: 2400 / 4000 [ 60%]  (Warmup)[A[Achain 1 |[33m█████▋    [0m| 04:35 Iteration: 2200 / 4000 [ 55%]  (Warmup)
-
-
-chain 4 |[33m██████▍   [0m| 04:35 Iteration: 2500 / 4000 [ 62%]  (Warmup)[A[A[A
-chain 2 |[33m██████▋   [0m| 04:41 Iteration: 2600 / 4000 [ 65%]  (Warmup)[Achain 1 |[33m█████▉    [0m| 04:45 Iteration: 2300 / 4000 [ 57%]  (Warmup)
-
-chain 3 |[33m██████▍   [0m| 04:45 Iteration: 2500 / 4000 [ 62%]  (Warmup)[A[A
-
-
-chain 4 |[33m██████▋   [0m| 04:46 Iteration: 2600 / 4000 [ 65%]  (Warmup)[A[A[A
-chain 2 |[33m██████▉   [0m| 04:50 Iteration: 2700 / 4000 [ 67%]  (Warmup)[Achain 1 |[33m██████▏   [0m| 04:55 Iteration: 2400 / 4000 [ 60%]  (Warmup)
-
-chain 3 |[33m██████▋   [0m| 04:57 Iteration: 2600 / 4000 [ 65%]  (Warmup)[A[A
-chain 2 |[33m███████▏  [0m| 04:58 Iteration: 2800 / 4000 [ 70%]  (Warmup)[A
-
-
-chain 4 |[33m██████▉   [0m| 04:58 Iteration: 2700 / 4000 [ 67%]  (Warmup)[A[A[Achain 1 |[33m██████▍   [0m| 05:07 Iteration: 2500 / 4000 [ 62%]  (Warmup)
-
-chain 3 |[33m██████▉   [0m| 05:09 Iteration: 2700 / 4000 [ 67%]  (Warmup)[A[A
-
-
-chain 4 |[33m███████▏  [0m| 05:09 Iteration: 2800 / 4000 [ 70%]  (Warmup)[A[A[Achain 1 |[33m██████▋   [0m| 05:18 Iteration: 2600 / 4000 [ 65%]  (Warmup)
-chain 2 |[33m███████▍  [0m| 05:19 Iteration: 2900 / 4000 [ 72%]  (Warmup)[A
-chain 2 |[34m███████▌  [0m| 05:19 Iteration: 3000 / 4000 [ 75%]  (Warmup)[A
-
-chain 3 |[33m███████▏  [0m| 05:21 Iteration: 2800 / 4000 [ 70%]  (Warmup)[A[A
-
-
-chain 4 |[33m███████▍  [0m| 05:26 Iteration: 2900 / 4000 [ 72%]  (Warmup)[A[A[A
-
-
-chain 4 |[34m███████▌  [0m| 05:26 Iteration: 3000 / 4000 [ 75%]  (Warmup)[A[A[Achain 1 |[33m██████▉   [0m| 05:28 Iteration: 2700 / 4000 [ 67%]  (Warmup)
-chain 2 |[34m███████▊  [0m| 05:34 Iteration: 3001 / 4000 [ 75%]  (Sampling)[A
-
-
-chain 4 |[34m███████▊  [0m| 05:40 Iteration: 3001 / 4000 [ 75%]  (Sampling)[A[A[A
-
-chain 3 |[33m███████▍  [0m| 05:40 Iteration: 2900 / 4000 [ 72%]  (Warmup)[A[Achain 1 |[33m███████▏  [0m| 05:40 Iteration: 2800 / 4000 [ 70%]  (Warmup)
-chain 2 |[34m████████  [0m| 05:48 Iteration: 3100 / 4000 [ 77%]  (Sampling)[A
-
-chain 3 |[34m███████▊  [0m| 05:53 Iteration: 3001 / 4000 [ 75%]  (Sampling)[A[A
-
-
-chain 4 |[34m████████  [0m| 05:54 Iteration: 3100 / 4000 [ 77%]  (Sampling)[A[A[Achain 1 |[33m███████▍  [0m| 05:58 Iteration: 2900 / 4000 [ 72%]  (Warmup)
-chain 2 |[34m████████▎ [0m| 06:03 Iteration: 3200 / 4000 [ 80%]  (Sampling)[A
-
-chain 3 |[34m████████  [0m| 06:07 Iteration: 3100 / 4000 [ 77%]  (Sampling)[A[A
-
-
-chain 4 |[34m████████▎ [0m| 06:08 Iteration: 3200 / 4000 [ 80%]  (Sampling)[A[A[Achain 1 |[34m███████▊  [0m| 06:12 Iteration: 3001 / 4000 [ 75%]  (Sampling)
-chain 2 |[34m████████▌ [0m| 06:18 Iteration: 3300 / 4000 [ 82%]  (Sampling)[A
-
-chain 3 |[34m████████▎ [0m| 06:21 Iteration: 3200 / 4000 [ 80%]  (Sampling)[A[A
-
-
-chain 4 |[34m████████▌ [0m| 06:22 Iteration: 3300 / 4000 [ 82%]  (Sampling)[A[A[Achain 1 |[34m████████  [0m| 06:25 Iteration: 3100 / 4000 [ 77%]  (Sampling)
-chain 2 |[34m████████▊ [0m| 06:32 Iteration: 3400 / 4000 [ 85%]  (Sampling)[A
-
-chain 3 |[34m████████▌ [0m| 06:34 Iteration: 3300 / 4000 [ 82%]  (Sampling)[A[A
-
-
-chain 4 |[34m████████▊ [0m| 06:36 Iteration: 3400 / 4000 [ 85%]  (Sampling)[A[A[Achain 1 |[34m████████▎ [0m| 06:39 Iteration: 3200 / 4000 [ 80%]  (Sampling)
-chain 2 |[34m█████████ [0m| 06:47 Iteration: 3500 / 4000 [ 87%]  (Sampling)[A
-
-chain 3 |[34m████████▊ [0m| 06:48 Iteration: 3400 / 4000 [ 85%]  (Sampling)[A[A
-
-
-chain 4 |[34m█████████ [0m| 06:50 Iteration: 3500 / 4000 [ 87%]  (Sampling)[A[A[Achain 1 |[34m████████▌ [0m| 06:53 Iteration: 3300 / 4000 [ 82%]  (Sampling)
-chain 2 |[34m█████████▎[0m| 07:02 Iteration: 3600 / 4000 [ 90%]  (Sampling)[A
-
-chain 3 |[34m█████████ [0m| 07:02 Iteration: 3500 / 4000 [ 87%]  (Sampling)[A[A
-
-
-chain 4 |[34m█████████▎[0m| 07:04 Iteration: 3600 / 4000 [ 90%]  (Sampling)[A[A[Achain 1 |[34m████████▊ [0m| 07:06 Iteration: 3400 / 4000 [ 85%]  (Sampling)
-
-chain 3 |[34m█████████▎[0m| 07:15 Iteration: 3600 / 4000 [ 90%]  (Sampling)[A[A
-chain 2 |[34m█████████▌[0m| 07:16 Iteration: 3700 / 4000 [ 92%]  (Sampling)[A
-
-
-chain 4 |[34m█████████▌[0m| 07:18 Iteration: 3700 / 4000 [ 92%]  (Sampling)[A[A[Achain 1 |[34m█████████ [0m| 07:20 Iteration: 3500 / 4000 [ 87%]  (Sampling)
-
-chain 3 |[34m█████████▌[0m| 07:29 Iteration: 3700 / 4000 [ 92%]  (Sampling)[A[A
-chain 2 |[34m█████████▊[0m| 07:31 Iteration: 3800 / 4000 [ 95%]  (Sampling)[A
-
-
-chain 4 |[34m█████████▊[0m| 07:32 Iteration: 3800 / 4000 [ 95%]  (Sampling)[A[A[Achain 1 |[34m█████████▎[0m| 07:33 Iteration: 3600 / 4000 [ 90%]  (Sampling)
-
-chain 3 |[34m█████████▊[0m| 07:43 Iteration: 3800 / 4000 [ 95%]  (Sampling)[A[A
-chain 2 |[34m██████████[0m| 07:46 Iteration: 3900 / 4000 [ 97%]  (Sampling)[A
-
-
-chain 4 |[34m██████████[0m| 07:46 Iteration: 3900 / 4000 [ 97%]  (Sampling)[A[A[Achain 1 |[34m█████████▌[0m| 07:47 Iteration: 3700 / 4000 [ 92%]  (Sampling)
-
-chain 3 |[34m██████████[0m| 07:51 Iteration: 3900 / 4000 [ 97%]  (Sampling)[A[Achain 1 |[34m█████████▊[0m| 07:53 Iteration: 3800 / 4000 [ 95%]  (Sampling)chain 1 |[34m██████████[0m| 07:57 Iteration: 3900 / 4000 [ 97%]  (Sampling)chain 1 |[34m██████████[0m| 07:57 Sampling completed                       
-chain 2 |[34m██████████[0m| 07:57 Sampling completed                       
-chain 3 |[34m██████████[0m| 07:57 Sampling completed                       
-chain 4 |[34m██████████[0m| 07:57 Sampling completed                       
-                                                                                                                                                                                                                                                                                                                                
-19:53:26 - cmdstanpy - INFO - CmdStan done processing.
-
-=== Posterior summary (head) ===
-           mean     sd  hdi_2.5%  hdi_97.5%  mcse_mean  mcse_sd  ess_bulk  ess_tail  r_hat
-a0        2.026  0.244     1.601      2.499      0.005    0.006    2735.0    2016.0    1.0
-w         0.713  0.035     0.640      0.775      0.001    0.001    2703.0    1686.0    1.0
-v0        0.463  0.105     0.257      0.674      0.001    0.002    6245.0    2812.0    1.0
-b_v[0]    0.106  0.103    -0.093      0.305      0.001    0.002    5961.0    2795.0    1.0
-b_v[1]    0.058  0.111    -0.156      0.271      0.001    0.002    6668.0    3287.0    1.0
-b_v[2]    0.297  0.706    -1.063      1.718      0.013    0.011    3104.0    2892.0    1.0
-b_v[3]    0.393  0.159     0.075      0.689      0.002    0.002    6179.0    3277.0    1.0
-b_v[4]    0.258  0.710    -1.243      1.559      0.013    0.011    3112.0    3079.0    1.0
-eta_t0_0  3.633  0.466     2.755      4.548      0.007    0.009    5343.0    2695.0    1.0
-b_t0[0]   0.007  0.988    -1.847      1.970      0.012    0.016    6390.0    2814.0    1.0
-b_t0[1]   0.123  0.994    -1.798      2.028      0.014    0.016    5415.0    2768.0    1.0
-b_t0[2]  -0.428  0.470    -1.320      0.531      0.007    0.008    5068.0    2831.0    1.0
-b_a[0]    0.003  0.038    -0.069      0.082      0.000    0.001    6310.0    2783.0    1.0
-b_a[1]    0.002  0.495    -0.939      0.977      0.006    0.008    6321.0    3108.0    1.0
-
-Saved:
-  fit_out/ddm_cache_regression/2state/ddm_subject13_S2.nc
-  fit_out/ddm_cache_regression/2state/ddm_subject13_S2_summary.csv
-
-
-End time: Mon Feb 23 07:53:28 PM EST 2026
-DDM cache regression completed for Subject 13, States 2
